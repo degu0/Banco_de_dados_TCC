@@ -3,13 +3,13 @@ USE TCC;
 
 CREATE TABLE Professor(
 	Nome varchar(255) NOT NULL,
-	AulasTrabalhadas int NOT NULL AUTO_INCREMENT,
-    AulasNaoTrabalhadas int NOT NULL, 
-    PRIMARY KEY (Nome),
-    CONSTRAINT Pr_Turma FOREIGN KEY (NomeDaTurma) REFERENCES Turma(NomeDaTurma),
+	AulasTrabalhadas int NOT NULL AUTO_INCREMENT, ##Possivelmente essa columa não vai precisar usar
+	AulasNaoTrabalhadas int NOT NULL, ##Possivelmente essa columa não vai precisar usar
+	PRIMARY KEY (Nome),
+	CONSTRAINT Pr_Turma FOREIGN KEY (NomeDaTurma) REFERENCES Turma(NomeDaTurma),
 	CONSTRAINT Pr_Disciplina FOREIGN KEY (NomeDaDisciplina) REFERENCES Disciplinas(NomeDaDisciplina)
 )ENGINE = innodb;
-##Possivelmente essa columa não vai precisar usar
+
 ## Colocar as horas "trabalhadas" de um professor
 
 CREATE TABLE Turma(
@@ -27,4 +27,4 @@ CREATE TABLE Disciplinas(
     PRIMARY KEY (NomeDaDisciplina)
 );
 
-SELECT * FROM Disciplinas;
+SELECT * FROM ;
