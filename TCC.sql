@@ -8,7 +8,7 @@ CREATE TABLE Professor(
 	PRIMARY KEY (Nome),
 	CONSTRAINT Pr_Turma FOREIGN KEY (NomeDaTurma) REFERENCES Turma(NomeDaTurma),
 	CONSTRAINT Pr_Disciplina FOREIGN KEY (NomeDaDisciplina) REFERENCES Disciplinas(NomeDaDisciplina)
-)ENGINE = innodb;
+)ENGINE = innodb; #A chave estrangeira esta errada e algo a mais esta errado
 
 ## Colocar as horas "trabalhadas" de um professor
 
@@ -17,14 +17,14 @@ CREATE TABLE Turma(
     ApreviasaoDoNomeDaTurma char(35) NOT NULL, ##Opcional
     Curso enum('MKT', 'TDS') NOT NULL, ## Coluna que tera so duas "resposta": Markenting (MKT) ou Desenvolvimento de Sistema(TDS)
     PRIMARY KEY (NomeDaTurma),
-    CONSTRAINT TM_Disciplina FOREIGN KEY (NomeDaDisciplina) REFERENCES Disciplinas(NomeDaDisciplina)
+    CONSTRAINT TM_Disciplina FOREIGN KEY (NomeDaDisciplina) REFERENCES Disciplinas(NomeDaDisciplina) #A chave estrangeira esta errada
 );
 
 CREATE TABLE Disciplinas(
 	NomeDaDisciplina char(50) NOT NULL,
     ##Uma condição para que haja uma disciplima para uma turma espeficifica
     AulaSemanais char(50) NOT NULL,
-    PRIMARY KEY (NomeDaDisciplina)
+    PRIMARY KEY (NomeDaDisciplina) 
 );
 
 SELECT * FROM ;
