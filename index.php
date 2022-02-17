@@ -1,4 +1,9 @@
-<?php  include(nomeDaPasta/conexao.php); ?>
+<?php  
+include(ConexaoComBancosDeDados/Conexao.php);
+
+$consulta = "SELECT * FROM Professor";
+$con = $mysqli ->query($consulta) or die ($mysqli->error);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +14,24 @@
       <title>Document</title>
   </head>
   <body>
-    Página Inicial
+        <table>
+            <tr>
+                <td>Nome</td>
+                <td>AulasTrablahadas</td>
+                <td>AulasNaoTrabalhadas</td>
+                <td>NomeDaTurma</td>
+                <td>NomeDaDisciplina</td>
+            </tr>
+            <?php  while($dado = $con->fetch_array()){  ?>
+            <tr>
+                <td><?php echo $dado ["Pro_Nome"]; ?>/td>
+                <td><><?php echo $dado ["Pro_AulasTrabalhadas"]; ?></td>
+                <td>><?php echo $dado ["Pro_AulasNaoTrabalhadas"]; ?></td>
+                <td>><?php echo $dado ["Pro_NomeDaTurma"]; ?></td>
+                <td>><?php echo $dado ["Pro_fNomeDaDisciplina"]; ?></td>
+            </tr>
+            <?php } ?>
+        </table>
+
   </body>
 </html>
