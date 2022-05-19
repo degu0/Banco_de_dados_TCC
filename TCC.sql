@@ -9,6 +9,18 @@ CREATE TABLE Login(
     primary key(id) 
 );
 
+CREATE TABLE Instituto(
+	NomeDoInstituto varchar(50) NOT NULL,
+	TempoDoInstituto int NOT NULL,
+	primary key(NomeDoInstituto)
+);
+
+CREATE TABLE Tempo(
+	TempoDaEscola int NOT NULL,
+	##chaves estrageiras e provavelmente essa tbm sera uma, para a tabela "instituto"
+);
+
+
 CREATE TABLE Disciplinas(
 	NomeDaDisciplina char(50) NOT NULL,
     Ano int NOT NULL,
