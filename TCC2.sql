@@ -31,14 +31,17 @@ CREATE TABLE Horarios(
 	id int auto_increment,
 	Inicio int not null,
     Final int not null,
+	Hr_DiasDaSemana int,
+	Hr_Turno int,
     primary key(id),
-    constraint Hr_DiasDaSemana foreign key (DiasDaSemana) references DiasDaSemana(DiasDaSemana),
-    constraint Hr_Turno foreign key (Turnos) references Turno(Turnos)
+    constraint FK_DiasDaSemana foreign key (Hr_DiasDaSemana) references DiasDaSemana(DiasDaSemana),
+    constraint FK_Turno foreign key (Hr_Turno) references Turno(Turnos)
 );
 CREATE TABLE Instituto(
 	NomeDoInstituto varchar(50) NOT NULL,
 	primary key(NomeDoInstituto),
-    constraint Ins_Horario foreign key (id) references Horarios(id)
+	Ins_Horario int,
+    constraint FK_Horario foreign key (Ins_Horario) references Horarios(id)
 );
 CREATE TABLE Turma(
 	Ano int not null,
@@ -46,23 +49,35 @@ CREATE TABLE Turma(
     Curso varchar(20) not null,
     TotalAulasSemanais int not null,
     AulasGeminadas varchar(50) not null,
-    constraint Tu_Professores foreign key (id) references Professor(id),
-    constraint Tu_Disciplina foreign key (NomeDaDisciplina) references Disciplinas(NomeDaDisciplina)
+	Tu_Professores varchar(50),
+	Tu_Disciplina varchar(50),
+    constraint FK_Professores foreign key (Tu_Professores) references Professor(id),
+    constraint FK_Disciplina foreign key (Tu_Disciplina) references Disciplinas(NomeDaDisciplina)
 );
 CREATE TABLE ProfessorHorarios(
 	Disponibilidade varchar(50),
-    constraint PH_Professores foreign key (id) references Professor(id),
-    constraint PH_DiasDaSemana foreign key (DiasDaSemana) references DiasDaSemana(DiasDaSemana),
-    constraint PH_Turnos foreign key (Turnos) references Turno(Turnos),
-    constraint PH_Horarios foreign key (id) references Horarios(id)
+	PH_Professores varchar(50),
+	PH_DiasDaSemana int,
+	PH_Turnos int,
+	PH_Horarios int,
+    constraint FK_Professores foreign key (PH_Professores) references Professor(id),
+    constraint FK_DiasDaSemana foreign key (PH_DiasDaSemana) references DiasDaSemana(DiasDaSemana),
+    constraint FK_Turnos foreign key (PH_Turnos) references Turno(Turnos),
+    constraint FK_Horarios foreign key (PH_Horarios) references Horarios(id)
 );
 
 CREATE TABLE TurmasHorarios(
 	id int auto_increment,
-    constraint TH_Ano foreign key (Ano) references Turma(Ano),
-    constraint PH_Serie foreign key (Serie) references Turma(Serie),
-    constraint PH_Curso foreign key (Curso) references Turma(Curso),
-    constraint PH_DiasDaSemana foreign key (DiasDaSemana) references DiasDaSemana(DiasDaSemana),
-    constraint PH_Turno foreign key (Turnos) references Turno(Turnos),
-    constraint PH_Horarios foreign key (id) references Horarios(id)
+	TH_Ano int,
+	PH_Serie int,
+	PH_Curso int,
+	PH_DiasDaSemana int,
+	PH_Turno int,
+	PH_Horarios int,
+    constraint FK_Ano foreign key (TH_Ano) references Turma(Ano),
+    constraint FK_Serie foreign key (PH_Serie) references Turma(Serie),
+    constraint FK_Curso foreign key (PH_Curso) references Turma(Curso),
+    constraint FK_DiasDaSemana foreign key (PH_DiasDaSemana) references DiasDaSemana(DiasDaSemana),
+    constraint FK_Turno foreign key (PH_Turno) references Turno(Turnos),
+    constraint FK_Horarios foreign key (PH_Horarios) references Horarios(id)
 );
